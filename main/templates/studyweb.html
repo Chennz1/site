@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>学习资源平台网页</title>
+    <style>
+      * {
+        /*清除默认的格式*/
+        padding: 0;
+        margin: 0;
+      }
+
+      .w {
+        /*确定版心的宽度  保证缩放前后都居中*/
+        width: 1200px;
+        margin: auto;
+        background-color: #f5f5f5;
+      }
+
+      body {
+        font-family: "Microsoft YaHei";
+        background-color: white;
+        /* background-image: url(https://c-ssl.duitang.com/uploads/item/202003/04/20200304092534_labgg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+             */
+      }
+
+      .headline {
+        height: 80px;
+        line-height: 80px;
+        background-image: url(xiaohui.jpg);
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: contain;
+        text-indent: 5em;
+
+        margin: 0 auto;
+      }
+
+      .introduction {
+        width: 1200px;
+        height: 30px;
+        line-height: 30px;
+      }
+
+      .Subject-Area {
+        /* display:inline-block ; */
+        /* 为什么用了left就好了 */
+        float: left;
+        width: 300px;
+        height: 800px;
+        background-color: rgb(205, 222, 194, 0.5);
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      .Right-Area {
+        /* display:inline-block ; */
+        float: right;
+        width: 800px;
+        height: 800px;
+        color: rgb(252, 252, 252);
+        background-color: #d0e3f8;
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      .content {
+        width: 90%;
+        height: 85%;
+        background-color: rgb(244, 234, 206, 0.7);
+        margin: 10px 30px 40px 30px;
+        /*上下左右*/
+      }
+
+      .video {
+        width: 90%;
+        height: 40%;
+        background-color: rgb(244, 234, 206, 0.2);
+        margin: 10px 30px;
+        /*上下左右*/
+        border: 1px solid black;
+      }
+
+      .book {
+        width: 90%;
+        height: 40%;
+        background-color: rgb(244, 234, 206, 0.2);
+        margin: 10px 30px;
+        border: 1px solid black;
+      }
+
+      .subject {
+        height: 50px;
+        line-height: 50px;
+        background-color: rgb(205, 222, 194, 1);
+        border: 1px solid whitesmoke;
+        text-align: center;
+        margin: 5px auto;
+      }
+
+      h1 {
+        font-size: 40px;
+        font-weight: 400;
+      }
+
+      h4 {
+        font-size: 40px;
+        font-weight: 400;
+      }
+
+      .subject a {
+        font-size: 25px;
+        color: black;
+        font-weight: 400;
+      }
+
+      /* 对于导航中的每一个a */
+      .navi a {
+        display: inline-block;
+        /* 转化为行内块模式 */
+        width: 200px;
+        height: 40px;
+        background: rgb(160, 192, 240, 0.6);
+        line-height: 40px;
+        /* 如果想要去掉连接的下划线和蓝色字体 设成none */
+        /* text-decoration:none;
+            color:white; */
+      }
+
+      a {
+        padding: 0 30px;
+      }
+
+      .navi a:hover {
+        /* 鼠标碰到之后就会改变颜色 */
+        background: rgb(94, 117, 186, 1);
+      }
+
+      .subject a:hover {
+        background: rgb(244, 234, 206, 0.2);
+      }
+    </style>
+    <script src="study.js"></script>
+  </head>
+
+  <body>
+    <div class="headline w">
+      <!-- <img src="xiaohui.jpg" title="BUPT雏雁项目"width="200" /> -->
+      <h1>&lt; 学习资源平台推荐网页 &gt;</h1>
+      <!-- target中 blank是在新窗口中打开新页面 -->
+    </div>
+
+    <div class="introduction w">
+      <a href="intro.html" target="_blank"
+        >关于学习资源平台推荐的优势”,更多细节请点击</a
+      >
+    </div>
+
+    <div class="area w">
+      <!-- 左边的学科栏  -->
+      <div class="Subject-Area">
+        <h2>学科分类</h2>
+        <hr />
+        <!-- hr作用 ： 产生一条水平线 -->
+        <!-- 盒子里放了各个学科 -->
+        {% for i in courses%}
+        <div class="subject">
+          <form name="form1" action="./studyweb.html" method="post"></form>
+          <a href="javascript:document.form1.submit();">{{i.name}} </a>
+        </div>
+        {% end for %}
+      </div>
+
+      <!-- 右边的难度栏  -->
+      <div class="Right-Area">
+        <h2>学习目的</h2>
+        <p>
+          <sub> <ins>请根据当前学习水平和学习目标选择</ins> </sub>
+        </p>
+        <!-- sub作用： 产生一个下标 -->
+        <!-- 上部分的导航 -->
+        <div class="navi">
+          <a href="#">初级(简要了解) </a>
+          <a href="#">中级(重点学习)</a>
+          <a href="#">高级(深入钻研) </a>
+        </div>
+
+        <div class="content">
+          {% for i in wangkes%}
+          <div class="wangke">
+              {{i.name+" : "+i.url}}
+          </div>
+          {% end for %}
+          <!-- <div class="video">
+                    <h4>网课分享区</h4>
+                </div>
+                <div class="book">
+                    <h4>书籍分享区</h4>
+                </div> -->
+        </div>
+      </div>
+      <!-- 左边的学科栏结束  -->
+    </div>
+  </body>
+</html>

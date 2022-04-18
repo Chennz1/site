@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>学习资源平台网页——介绍</title>
+    <style>
+         *{ /*清除默认的格式*/
+            padding:0;
+            margin:0;
+        }
+        .w{/*确定版心的宽度  保证缩放前后都居中*/
+            width:1200px;
+            margin:auto;
+            background-color:#f5f5f5;
+        }
+        .heading{
+            height:200px;
+            line-height: 45px;
+            margin-bottom: 40px;
+        }
+        /* 上部分  点击之前 */
+        .tab_list ul{
+            overflow: hidden;
+        }
+        .tab_list ul li {
+            background-color:rgb(160,192,240,0.6);
+            float:left;
+            height:60px;
+            line-height:60px;
+            padding:0 100px;
+            text-align:center;
+            cursor:point;
+        
+        }
+        /* 上部分  点击之后 */
+        .tab_list .current {
+            background-color:rgb(94,117,186,1);
+            color:whitesmoke;
+        }
+        .tab_con {
+            height:200px;
+            background-color:rgb(160,192,240,0.3);
+            margin-top: 40px;
+        }
+        .item {
+            display:none;
+        }
+        li a{
+            float:right;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 1---Heading -->
+    <div class="heading w">
+    <h1>欢迎来到学习资源推荐平台 这里是关于这个网页的介绍</h1>
+   
+    <h3>如何理解 “根据水平选择” </h3>
+    <p>不同的学习者，学习课程时有不同的目标，且本身的能力水平不同</p>
+    <p>本平台会根据学习者当前所处的学习阶段做出推荐</p>
+    </div>
+
+    <!-- 2---table -->
+   <div class="table w">
+        <div class="tab_list">
+            <ul>
+                <li class="current">初级（简要了解）    </li>
+                <li>中级（重点学习）     </li>
+                <li>高级（深入钻研)     </li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <div class="item" style="display:block" ><h2>什么是初级？</h2><br> <br>
+                对该领域知识还非常陌生，尚处在入门阶段。学习目标是初步了解该领域的基础知识
+                 </div>
+            <div class="item" ><h2>什么是中级？</h2><br> <br>
+                已经掌握了一定的该领域的基础知识，已处于中阶阶段。学习目标是进一步深入探索该领域
+                </div>
+            <div class="item" ><h2>什么是高级？</h2> <br> <br>
+                已经掌握较全面的该领域知识，已处于高阶阶段。学习目标是深入研究该领域
+                </div>
+        </div>
+    </div>
+
+  
+    <script>
+
+        var tab_list=document.querySelector('.tab_list');
+        var lis=tab_list.querySelectorAll('li');
+        var items=document.querySelectorAll('.item');
+        for(var i=0; i<lis.length; i++){
+            // 设置索引号
+           lis[i].setAttribute('index',i);
+           
+            
+            lis[i].onclick=function(){
+                //  上面要变颜色 下面要显示
+                //1 改变上面的标签 把其他所有的都清除掉，然后只有自己是current类的
+                for (var j=0; j<lis.length; j++){
+                    lis[j].className='';
+                }
+                this.className='current';
+                
+                //2 把对应的内容拿出来显示
+                var index= this.getAttribute('index');
+                // 之前为每个li都设置了索引号 现在先得到我们点的索引号是多少
+                for(var k=0; k<items.length; k++){
+                    items[k].style.display='none';
+                }
+                console.log(index);
+                items[index].style.display='block';
+            }
+        }
+
+    </script>
+</body>
+</html>

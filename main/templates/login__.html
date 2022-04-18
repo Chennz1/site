@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>登录界面 </title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            background-image: url(https://c-ssl.duitang.com/uploads/item/202003/04/20200304092534_labgg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            min-height: 100%;
+        }
+
+        /* 登录页面样式 */
+        input {
+            border: 1px solid #f8d0d0;
+            border-radius: 20px;
+            height: 20px;
+        }
+
+        button {
+            color: rgb(252, 252, 252);
+            background-color: #d0e3f8;
+            border: 1px solid black;
+            width: 150px;
+            height: 40px;
+            border-radius: 3px;
+            margin: 20px, 10px;
+            padding: 5px, 5px;
+        }
+
+        h2 {
+            text-align: center;
+            /* color:#d1adad; */
+        }
+
+        .user-name {
+            margin-top: 20px;
+            height: 30%;
+            font-size: 30px;
+        }
+
+        .password {
+            margin-top: 20px;
+            height: 30%;
+            font-size: 30px;
+        }
+
+        .login {
+            background-color: rgba(211, 179, 179, 0.7);
+            border: cornsilk;
+            border-radius: 6px;
+            width: 500px;
+            height: 300px;
+            box-sizing: border-box;
+            position: absolute;
+            left: calc(50% - 250px);
+            top: 150px;
+
+        }
+
+        .disappear {
+            animation: myAnimation 10s;
+        }
+
+        @keyframes myAnimation {
+            from {
+                /* background-color: rgba(189, 141, 70, 0.6); */
+                opacity: 1;
+                top: 150px;
+            }
+
+            to {
+                /* background-color: white; */
+                opacity: 0;
+                top: -300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 登录界面 -->
+    <!-- 提问 是否需要进行修改 -->
+    <div class="login" id="login">
+        <h2>账号登录 </h2>
+        <form action="./studyweb.html" method="post">
+            <div class="user-name">
+                用户名 <input name="uid" id="in-name" placeholder="请输入用户名" />
+            </div>
+
+            <div class="password">
+                密码&nbsp <input name="password" id="in-pass" placeholder="请输入密码" type="password" />
+            </div>
+        </form>
+
+        <button id="login-button" class="login-button" >登录</button>
+    </div>
+</body>
+
+</html>
+
+
+
+<script>
+    const btn = document.getElementById('login-button');
+    const loginName = 'yang';
+    const loginPassword = '111';
+
+    btn.addEventListener('click', () => {
+        const name = document.getElementById('in-name').value
+        const password = document.getElementById('in-pass').value
+
+        if (name == '' || password == '') {
+            alert("can not be nothing!");
+        }
+        else if (name != loginName) {
+            alert("wrong name!输入yang");
+        }
+        else if (password != loginPassword) {
+            alert("wrong password!输入111");
+        }
+        else if (name == loginName && password == loginPassword) {
+            document.getElementById('login').className = 'login disappear';
+            setTimeout(() => {
+                window.location.href = "choose.html"
+            }, 500)
+        }
+    })
+</script>

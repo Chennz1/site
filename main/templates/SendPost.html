@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>用户发帖界面</title>
+    <style>
+         *{ /*清除默认的格式*/
+            padding:0;
+            margin:0;
+        }
+        .w{/*确定版心的宽度  保证缩放前后都居中*/
+            width:1200px;
+            margin:auto;
+            background-color:#f5f5f5;
+        }
+        img{
+            position:absolute;
+            width:20px;
+        }
+        .heading{
+            height:140px;
+            line-height: 50px;
+            margin-bottom: 40px;
+        }
+        
+        .postarea ul li {
+            height:120px;
+            width:80%;
+            margin-top:10px;
+            background-color:rgb(160,192,240,0.3);
+            border-color: whitesmoke;
+        }
+        
+        li a{
+            float:right;
+        }
+        
+        textarea {
+            height:350px;
+            width:80%;
+            background-color:rgb(160,192,240,0.5);
+            border-color: whitesmoke;
+            border-radius: 1em;
+        }
+        button {
+            width:80px;
+            height:30px;
+            border-color:silver;
+            border-radius:3px;
+        }
+       
+    </style>
+        
+</head>
+
+<body>
+    <img src="shubiao.jpg" >
+    <!-- 1---Heading -->
+    <div class="heading w">
+    <h1>欢迎来到学习资源推荐平台  发帖界面</h1>
+    <h3>用户可以在此发表自己对于网课或者书籍的评价</h3>
+
+    </div>
+    <!-- 1---Heading结束 -->
+
+    <!-- 2---发言区 -->
+    <div class="postarea w">
+        <textarea name="" id="">123</textarea>
+        <button>发送</button>
+        <ul>
+
+        </ul>
+    
+     
+    </div>
+    <!-- 2---发言区结束 -->
+    <script>
+        var btn=document.querySelector('button');
+        var text=document.querySelector('textarea');
+        var ul=document.querySelector('ul');
+
+        btn.onclick =function (){
+            if(text.value==''){
+                alert('请输入内容');//弹出警示框 代表没有输入内容
+            }
+            else{
+
+                //1-- 创建一个新的元素
+                var li=document.createElement('li');
+                //2-- 赋值  注意href='javascript:;' 会阻止页面跳转
+                li.innerHTML =text.value +"<a href='javascript:;'>删除本帖 </a>";
+                
+                //3-- 为ul父元素添加上新的li
+                // ul.appendChild(li);
+                //3-- 按新度，在第一个元素ul.children[0]之前插入
+                ul.insertBefore(li,ul.children[0]);
+                //4-- 绑定删除事件
+                var as=document.querySelectorAll('a');
+                for(var i=0; i<as.length; i++){
+                    as[i].onclick =function(){
+                        ul.removeChild(this.parentNode);
+                    }
+                }
+            }
+           
+        }
+        // 设置鼠标天使  图片跟随鼠标的位置移动
+        var pic=document.querySelector('img');
+        document.addEventListener('mousemove',function(e){
+            var x=e.pageX;
+            var y=e.pageY;
+            // 注意单位px 拼接上去
+            pic.style.left=x-20 +'px';
+            pic.style.top=y-20+'px';
+        })
+
+
+       
+
+    </script>
+</body>
+</html>
